@@ -14,6 +14,9 @@ app.get("/" , (req,res) => {
     res.render("index");
 });
 
+app.get("/number-guess" , function(req,res) {
+    res.render("../views/number-guess.ejs");
+});
 
 const PORT = process.env.PORT || 3000;
 
