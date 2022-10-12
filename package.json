@@ -1,0 +1,15 @@
+{
+  "name": "sleds-sports",
+  "version": "1.0.0",
+  "description": "Live Score Web Application",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "nodemon": "^2.0.20"
+  }
+}
