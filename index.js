@@ -14,8 +14,16 @@ app.get("/" , (req,res) => {
     res.render("index");
 });
 
-app.get("/number-guess" , function(req,res) {
-    res.render("../views/number-guess.ejs");
+app.get("/tower-defense" , function(req,res) {
+    res.render("../views/tower-defense.ejs");
+});
+
+app.get("/retro-racing" , function(req,res) {
+    res.render("../views/retro-racing.ejs");
+});
+
+app.get("/black-jack" , function(req,res) {
+    res.render("../views/black-jack.ejs");
 });
 
 const PORT = process.env.PORT || 3000;

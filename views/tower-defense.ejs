@@ -8,10 +8,12 @@
         <meta name="author" content="Ethan Sledzinski">
         <meta name="viewpoints" content="width=device-width, intial-scale=1.0">
         <title>Gamer God</title>
-        <script src="https://kit.fontawesome.com/6f5f524506.js" crossorigin="anonymous"></script>
         <link rel="shortcut icon" href="../public/images/Gamer_God.png" type="png">
+        <script src="https://kit.fontawesome.com/6f5f524506.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="../public/css/stylesheet1.css">
         <link rel="stylesheet" href="../public/css/navsheet.css"
+        <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+        <script defer src="https://pyscript.net/latest/pyscript.js"></script>
     </head>
 
     <body>
@@ -29,7 +31,7 @@
                         <p>Gamer</p>
                     </div>
                     <div class="menu-items">
-                        <li></li><a id="mnav" href="/tower-defense"><i class="fa-solid fa-tower-observation"></i>Tower Defense</a></li>
+                        <li></li><a id="mnav" href="/"><i class="fa-regular fa-house"></i></i>Home</a></li>
                         <li></li><a id="mnav" href="/retro-racing"><i class="fa-light fa-cars"></i>Retro Racing</a></li>
                         <li></li><a id="mnav" href="/black-jack"><i class="fa-light fa-cards"></i>Black Jack</a></li>
                     </div>
@@ -37,30 +39,20 @@
                 </div>
             </nav>
             <br>
-            <h1 id="titlecard">Gamer God</h1>
+            <h1>Gamer God</h1>
             <br>
-            <img id="logo "src="../public/images/Gamer_God.png" alt="logo image">
-           <!-- <nav id="nav_bar">
-                <p id="p_menu">What Game Is For You?</p>
-                <menu class="menu">                       
-                    <a id="mnav" href="/number-guess"><i class="fas fa-football-ball"></i>Number guess game</a>
-                    <a id="mnav" href="/."><i class="fas fa-baseball-ball"></i>Snake</a>
-                    <a id="mnav" href="/."><i class="fas fa-basketball-ball"></i>Aliens Go Pew</a>
-                </menu>
-            </nav>-->
-        </header>
-        <br>
-        <main id="page_main_content">
-            <h2>The Best Name In gaming</h2> 
-            <p id="pMain">This Page is Designed to Provide the Optimal gamimg Expirence with Everydays Games</p>
+            <img id="logo "src="./public/images/Gamer_God.png" alt="trophy image">
 
-              
-            <ul id="main_nav">                   
-                <a id="mnav" href="/number-guess"><i class="fas fa-football-ball"></i>Number guess game</a>
-                <a id="mnav" href="/."><i class="fas fa-baseball-ball"></i>Snake</a>
-                <a id="mnav" href="/."><i class="fas fa-basketball-ball"></i>Aliens Go Pew</a>
-            </ul>
+
+        </header>
+
+        <main>
+            <py-script>
+               print("hello world")
+
+            </py-script>
         </main>
+
 
         <footer id="page_footer">
             <br>
@@ -76,9 +68,5 @@
             <a href="#page_header"><button type="menu">Return To The Top Of The Page</button></a>
         </footer>
     </body>
-
-
-
-
 
 </html>
