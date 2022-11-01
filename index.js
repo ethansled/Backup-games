@@ -1,5 +1,5 @@
 const express = require("express");
-
+const ContainerManager = require("./containers.js")
 const ejs = require("ejs");
 
 const app = new express();
@@ -13,6 +13,10 @@ app.use("/public", express.static(__dirname + "/public"));
 app.get("/" , (req,res) => {
     res.render("index");
 });
+
+app.get("/games/:appId", (req, res) => {
+    ContainerManager.
+})
 
 app.get("/tower-defense" , function(req,res) {
     res.render("../views/tower-defense.ejs");
