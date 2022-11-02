@@ -92,7 +92,7 @@
   .navbar .menu-items {
     padding-top: 120px;
     /*box-shadow: inset 0 0 2000px #000000;*/
-    background: 2000px #000000;
+    background: 2000px #292929;
     height: 100vh;
     width: 100%;
     transform: translate(-150%);
@@ -136,4 +136,10 @@
   
   .nav-container input[type="checkbox"]:checked ~ .logo{
     display: none;
+  }
+
+  .menu-items {
+    background-color: #808080;
+    border-color: #ffa31a;
+    border: groove;
   }
