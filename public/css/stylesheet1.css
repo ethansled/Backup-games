@@ -1,15 +1,15 @@
-head{
+head {
     background-color: #1b1b1b;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-body{
+body {
     background-color: #1b1b1b;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: #ffffff;
 }
 
-h1{
+h1 {
     background-color: #292929;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: #ffa31a;
@@ -20,12 +20,9 @@ h1{
     text-align: center;
     width: 18%;
     margin: 0 auto;
-
-    
-    
 }
 
-h2{
+h2 {
     background-color: #292929;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: #ffa31a;
@@ -38,7 +35,7 @@ h2{
     margin: 0 auto;
 }
 
-h3{
+h3 {
     background-color: #292929;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: #ffa31a;
@@ -49,7 +46,7 @@ h3{
     text-align: center;
 }
 
-h4{
+h4 {
     background-color: #292929;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: #ffa31a;
@@ -60,18 +57,32 @@ h4{
     text-align: center;
 }
 
-a{
+a {
     color: #ffa31a;
 }
 
-img{
-    border:#808080;
+img {
+    border: #808080;
     border-style: groove;
     text-align: center;
     width: 30%;
     display: block;
     box-shadow: 10px 10px 13px black;
     margin: 0 auto;
-
 }
 
+figcaption {
+    text-shadow: 10px 10px 13px black;
+    text-align: center;
+    font-size: 150%;
+}
+
+a {
+    text-decoration: none;
+}
+
+.gamelogo {
+    border-radius: 30%;
+    box-shadow: 10px 10px 13px black;
+    border: solid 2px gold;
+}

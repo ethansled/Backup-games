@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name ="language" content="en-US"
-        <meta name="description" content="game web application">
-        <meta name="keywords" content="games, snake, arcade">
-        <meta name="author" content="Ethan Sledzinski, Thomas Thompson, Andrew Sheldrick, Scott Okalski">
-        <meta name="viewpoints" content="width=device-width, intial-scale=1.0">
-        <title>Gamer God</title>
-        <script src="https://kit.fontawesome.com/0f174da1e7.js" crossorigin="anonymous"></script>
-        <link rel="shortcut icon" href="../public/images/Gamer_God.png" type="png">
-        <link rel="stylesheet" href="../public/css/stylesheet1.css">
-        <link rel="stylesheet" href="../public/css/navsheet.css"
-    </head>
 
-    <body>
-        <header id="page_header">
-            <nav>
-                <div class="navbar">
-                    <div class="container0 nav-container">
-                        <input class="checkbox" type="checkbox" name="" id="" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="language" content="en-US" <meta name="description" content="game web application">
+    <meta name="keywords" content="games, snake, arcade">
+    <meta name="author" content="Ethan Sledzinski, Thomas Thompson, Andrew Sheldrick, Scott Okalski">
+    <meta name="viewpoints" content="width=device-width, intial-scale=1.0">
+    <title>Gamer God</title>
+    <script src="https://kit.fontawesome.com/0f174da1e7.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="../public/images/Gamer_God.png" type="png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="../public/css/stylesheet1.css">
+    <link rel="stylesheet" href="../public/css/navsheet.css">
+</head>
+
+<body>
+    <header id="page_header">
+        <nav>
+            <div class="navbar">
+                <div class="container0 nav-container">
+                    <input class="checkbox" type="checkbox" name="" id="" />
                     <div class="hamburger-lines">
                         <span class="line line1"></span>
                         <span class="line line2"></span>
@@ -30,54 +32,88 @@
                     </div>
                     <div class="menu-items">
                         <h2>What Game Would You Like To Play?</h2>
-                        <li></li><a id="mnav" href="/tower-defense"><i class="fa-solid fa-tower-observation"></i>Tower Defense</a></li>
+                        <li></li><a id="mnav" href="/tower-defense"><i class="fa-solid fa-tower-observation"></i>Tower
+                            Defense</a></li>
                         <li></li><a id="mnav" href="/retro-racing"><i class="fa-solid fa-car"></i>Retro Racing</a></li>
                         <li></li><a id="mnav" href="/black-jack"><i class="fa-solid fa-crown"></i>Black Jack</a></li>
                     </div>
-                    </div>
                 </div>
-            </nav>
-            <br>
-            <h1 id="titlecard">Gamer God</h1>
-            <br>
-            <img id="logo "src="../public/images/Gamer_God.png" alt="logo image">
-           <!-- <nav id="nav_bar">
+            </div>
+        </nav>
+        <br>
+        <h1 id="titlecard">Gamer God</h1>
+        <br>
+        <img id="logo " src="../public/images/Gamer_God.png" alt="logo image">
+        <!-- <nav id="nav_bar">
                 <p id="p_menu">What Game Is For You?</p>
-                <menu class="menu">                       
+                <menu class="menu">
                     <a id="mnav" href="/number-guess"><i class="fas fa-football-ball"></i>Number guess game</a>
                     <a id="mnav" href="/."><i class="fas fa-baseball-ball"></i>Snake</a>
                     <a id="mnav" href="/."><i class="fas fa-basketball-ball"></i>Aliens Go Pew</a>
                 </menu>
             </nav>-->
-        </header>
+    </header>
+    <br>
+    <main id="page_main_content">
+        <h2>The Best Name In gaming</h2>
+        <br><br>
+        <p style="text-align: center " id="pMain ">This Page is Designed to Provide the Optimal gamimg Expirence with Everydays Games</p>
+        <br><br><br>
+        <!----BootStrap-->
+        <div class="row ">
+            <br><br>
+            <div class="col-12 col-md-6 col-xl-4 ">
+                <a href="game-view.ejs ">
+                    <figure>
+                        <img class="gamelogo" class=" img-responsive center-block d-block mx-auto " src="./public/images/snakegame.png " alt="Snake Game ">
+                        <figcaption> Snake Game</figcaption>
+                    </figure>
+                </a>
+            </div>
+            <div class="col-12 col-md-6 col-xl-4 ">
+                <a href="game-view.ejs ">
+                    <figure>
+                        <img class="gamelogo" class="img-responsive center-block d-block mx-auto " src="./public/images/retroracing.png " alt="Retro Racing ">
+                        <figcaption> Retro Racing</figcaption>
+                    </figure>
+                </a>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 col-xl-4 ">
+                <a href="game-view.ejs ">
+                    <figure>
+                        <img class="gamelogo" class="img-responsive center-block d-block mx-auto " src="./public/images/TowerDefense.jpg " alt=" Tower Defense ">
+                        <figcaption>Tower Defense</figcaption>
+                    </figure>
+                </a>
+
+            </div>
+        </div>
+        </div>
+        </div>
+        <!----End BootStrap----->
+        <br><br><br>
+        <ul id="main_nav ">
+            <a id="mnav " href="/tower-defense "><i class="fa-solid fa-tower-observation "></i> Tower Defense</a>
+            <a id="mnav " href="/retro-racing "><i class="fa-solid fa-car "></i> Retro Racing</a>
+            <a id="mnav " href="/black-jack "><i class="fa-solid fa-crown "></i> Black Jack</a>
+        </ul>
+    </main>
+
+    <footer id="page_footer ">
         <br>
-        <main id="page_main_content">
-            <h2>The Best Name In gaming</h2> 
-            <p id="pMain">This Page is Designed to Provide the Optimal gamimg Expirence with Everydays Games</p>
-
-              
-            <ul id="main_nav">                   
-                <a id="mnav" href="/tower-defense"><i class="fa-solid fa-tower-observation"></i>  Tower Defense</a>
-                <a id="mnav" href="/retro-racing"><i class="fa-solid fa-car"></i>  Retro Racing</a>
-                <a id="mnav" href="/black-jack"><i class="fa-solid fa-crown"></i>  Black Jack</a>
-            </ul>
-        </main>
-
-        <footer id="page_footer">
-            <br>
-            <hr>
-            <p>&copy; 2022, Ethan Sledzinski, Thomas Thompson, Andrew Sheldrick, Scott Okalski</p> 
-            <a href="https://www.instagram.com" aria-label="Instagram" target="_self">
-                <i class="fab fa-instagram fa-1x"></i>Instagram</a>  
-            <a href="https://www.facebook.com">
-                <i class="fab fa-facebook fa-1x"></i>Facebook</a>
-            <a href="https://www.twitter.com">
-                <i class="fab fa-twitter fa-1x"></i>Twitter</a>
-            <br>
-            <br>
-            <a href="#page_header"><button type="menu">Return To The Top Of The Page</button></a>
-        </footer>
-    </body>
+        <hr>
+        <p>&copy; 2022, Ethan Sledzinski, Thomas Thompson, Andrew Sheldrick, Scott Okalski</p>
+        <a href="https://www.instagram.com " aria-label="Instagram " target="_self ">
+            <i class="fab fa-instagram fa-1x "></i>Instagram</a>
+        <a href="https://www.facebook.com ">
+            <i class="fab fa-facebook fa-1x "></i>Facebook</a>
+        <a href="https://www.twitter.com ">
+            <i class="fab fa-twitter fa-1x "></i>Twitter</a>
+        <br>
+        <br>
+        <a href="#page_header "><button type="menu ">Return To The Top Of The Page</button></a>
+    </footer>
+</body>
 
 
 </html>
