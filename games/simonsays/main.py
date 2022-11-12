@@ -1,6 +1,7 @@
 import pygame, random, time, sys, asyncio
 from pygame.locals import *
 
+# Window settings
 WINHEIGHT = 500
 WINWIDTH = 900
 FLASHSPEED = 500 # in ms
@@ -9,6 +10,8 @@ BUTTONSIZE = 200
 BUTTONGAPSIZE = 25
 TIMEOUT = 4 #times out if not pressed for 4 secs
 FPS = 30
+XMARGIN = int((WINWIDTH - (2 * BUTTONSIZE) - BUTTONGAPSIZE) / 2)
+YMARGIN = int((WINHEIGHT - (2 * BUTTONSIZE) - BUTTONGAPSIZE) / 2)
 
 # RGB colors
 WHITE = (255, 255, 255)
@@ -23,8 +26,6 @@ BRIGHTBLUE = (0, 0, 255)
 BRIGHTYELLOW = (255, 255, 0)
 bgColor = BLACK
 
-XMARGIN = int((WINWIDTH - (2 * BUTTONSIZE) - BUTTONGAPSIZE) / 2)
-YMARGIN = int((WINHEIGHT - (2 * BUTTONSIZE) - BUTTONGAPSIZE) / 2)
 
 # formatting for each rectangle/color tile
 YELLOWRECT = pygame.Rect(XMARGIN, YMARGIN, BUTTONSIZE, BUTTONSIZE)
@@ -33,24 +34,28 @@ REDRECT = pygame.Rect(XMARGIN, YMARGIN + BUTTONSIZE + BUTTONGAPSIZE, BUTTONSIZE,
 GREENRECT = pygame.Rect(XMARGIN + BUTTONSIZE + BUTTONGAPSIZE, YMARGIN + BUTTONSIZE + BUTTONGAPSIZE, BUTTONSIZE, BUTTONSIZE)
 
 
+FONT = pygame.font.SysFont("monospace", 16)
+
+# game sounds
+SOUND1 = pygame.mixer.Sound("sound1.ogg")
+SOUND2 = pygame.mixer.Sound("sound2.ogg")
+SOUND3 = pygame.mixer.Sound('sound3.ogg')
+SOUND4 = pygame.mixer.Sound('sound4.ogg')
+SOUND5 = pygame.mixer.Sound('sound5.ogg')
+
+pygame.init()
+DIS = pygame.display.set_mode((WINWIDTH, WINHEIGHT))
+FPSCLOCK = pygame.time.Clock()
+
+
 async def main():
-    global FPSCLOCK, DIS, FONT, SOUND1, SOUND2, SOUND3, SOUND4, SOUND5
-    pygame.init()
-    FPSCLOCK = pygame.time.Clock()
-    DIS = pygame.display.set_mode((WINWIDTH, WINHEIGHT))
+    global FPSCLOCK, DIS, FONT, SOUND1, SOUND2, SOUND3, SOUND4, SOUND5, WINWIDTH, WINHEIGHT, YELLOWRECT, BLUERECT, GREENRECT, REDRECT
     pygame.display.set_caption('Simon')
-    FONT = pygame.font.SysFont("monospace", 16)
 
     # instructions, placed in top left
     infoWindow = FONT.render('Follow the pattern using Q, W, A, S keys OR click tiles.', 1, WHITE)
     infoRect = infoWindow.get_rect()
 
-    # game sounds
-    SOUND1 = pygame.mixer.Sound("sound1.ogg")
-    SOUND2 = pygame.mixer.Sound("sound2.ogg")
-    SOUND3 = pygame.mixer.Sound('sound3.ogg')
-    SOUND4 = pygame.mixer.Sound('sound4.ogg')
-    SOUND5 = pygame.mixer.Sound('sound5.ogg')
 
     pattern = [] # stores the color pattern in array
     currentStep = 0 # the color the player must push next
@@ -87,7 +92,7 @@ async def main():
         if not waitingForInput:
             # play the pattern when not waiting for user 
             pygame.display.update()
-            pygame.time.wait(1000)
+            # pygame.time.wait(1000)
             pattern.append(random.choice((YELLOW, BLUE, RED, GREEN))) # randomly chooses next color tile
             for button in pattern:
                 flashButtonAnimation(button)
@@ -114,8 +119,9 @@ async def main():
                 currentStep = 0
                 waitingForInput = False
                 score =  0
-                pygame.time.wait(1000)
+                # pygame.time.wait(1000)
         
+        await asyncio.sleep(0)
         pygame.display.update()
         FPSCLOCK.tick(FPS)
         
@@ -191,8 +197,3 @@ def getButtonClicked(x, y): # allows users to click squares instead
     return None
 
 asyncio.run(main())
-
-
-
-
-

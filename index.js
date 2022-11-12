@@ -1,7 +1,7 @@
 const express = require("express");
 const ejs = require("ejs");
 
-// const ContainerManager = require("./containers.js")
+const ContainerManager = require("./containers.js")
 
 const app = new express();
 
@@ -16,7 +16,7 @@ app.get("/" , (req,res) => {
 });
 
 app.get("/games/:appId", (req, res) => {
-    // forward request to getAppUrl(appId)
+    
 })
 
 app.get("/tower-defense" , function(req,res) {
