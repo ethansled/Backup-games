@@ -9,9 +9,21 @@ body {
     color: #ffffff;
 }
 
+p {
+    border: solid black 1px;
+    font-family: fantasy;
+    color: #ffa31a;
+    border: #808080;
+    border-style: groove;
+    padding: 1%;
+    box-shadow: 10px 10px 13px black;
+    width: 18%;
+    margin: 0 auto;
+}
+
 h1 {
     background-color: #292929;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: fantasy;
     color: #ffa31a;
     border: #808080;
     border-style: groove;
@@ -24,7 +36,7 @@ h1 {
 
 h2 {
     background-color: #292929;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: fantasy;
     color: #ffa31a;
     border: #808080;
     border-style: groove;
