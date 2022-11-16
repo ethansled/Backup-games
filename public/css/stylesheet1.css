@@ -10,7 +10,7 @@ body {
 }
 
 p {
-    border: solid black 1px;
+    background-color: #292929;
     font-family: fantasy;
     color: #ffa31a;
     border: #808080;
