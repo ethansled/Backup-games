@@ -33,10 +33,11 @@ BLUERECT = pygame.Rect(XMARGIN + BUTTONSIZE + BUTTONGAPSIZE, YMARGIN, BUTTONSIZE
 REDRECT = pygame.Rect(XMARGIN, YMARGIN + BUTTONSIZE + BUTTONGAPSIZE, BUTTONSIZE, BUTTONSIZE)
 GREENRECT = pygame.Rect(XMARGIN + BUTTONSIZE + BUTTONGAPSIZE, YMARGIN + BUTTONSIZE + BUTTONGAPSIZE, BUTTONSIZE, BUTTONSIZE)
 
-
+pygame.font.init()
 FONT = pygame.font.SysFont("monospace", 16)
 
 # game sounds
+pygame.mixer.init()
 SOUND1 = pygame.mixer.Sound("sound1.ogg")
 SOUND2 = pygame.mixer.Sound("sound2.ogg")
 SOUND3 = pygame.mixer.Sound('sound3.ogg')
@@ -66,7 +67,7 @@ async def main():
     while True: # MAIN GAME LOOP
         clickedButton = None # Button that was clicked (set to YELLOW, RED, GREEN, or BLUE)
         DIS.fill(bgColor)
-        drawButtons() #draws tiles on screen
+        await drawButtons() #draws tiles on screen
 
         scoreSurf = FONT.render('Score: ' + str(score), 1, WHITE) # score, displayed in right corner
         scoreRect = scoreSurf.get_rect()
@@ -78,7 +79,7 @@ async def main():
         for event in pygame.event.get(): # maps mouse clicks to key presses
             if event.type == MOUSEBUTTONUP:
                 mousex, mousey = event.pos
-                clickedButton = getButtonClicked(mousex, mousey)
+                clickedButton = await getButtonClicked(mousex, mousey)
             elif event.type == KEYDOWN:
                 if event.key == K_q:
                     clickedButton = YELLOW
@@ -95,14 +96,14 @@ async def main():
             # pygame.time.wait(1000)
             pattern.append(random.choice((YELLOW, BLUE, RED, GREEN))) # randomly chooses next color tile
             for button in pattern:
-                flashButtonAnimation(button)
+                await flashButtonAnimation(button)
                 pygame.time.wait(FLASHDELAY)
             waitingForInput = True
         else:
             # wait for the player to enter buttons
             if clickedButton and clickedButton == pattern[currentStep]:
                 # pushed the correct button
-                flashButtonAnimation(clickedButton)
+                await flashButtonAnimation(clickedButton)
                 currentStep += 1
                 lastClickTime = time.time()
                 
@@ -113,20 +114,22 @@ async def main():
                     currentStep = 0 # reset back to first step
             elif (clickedButton and clickedButton != pattern[currentStep]) or (currentStep != 0 and time.time() - TIMEOUT > lastClickTime):
                 # pushed incorrect button or has timed out
-                gameOverAnimation()
+                await gameOverAnimation()
                 # reset the variables for a new game
                 pattern = []
                 currentStep = 0
                 waitingForInput = False
                 score =  0
-                # pygame.time.wait(1000)
+                pygame.time.wait(1000)
+                await asyncio.sleep(0)
         
         await asyncio.sleep(0)
         pygame.display.update()
         FPSCLOCK.tick(FPS)
         
    
-def flashButtonAnimation(color, animationSpeed=50): # flashes button for pattern order
+async def flashButtonAnimation(color, animationSpeed=50): # flashes button for pattern order
+    global DIS, FPSCLOCK, YELLOWRECT, BLUERECT, REDRECT, GREENRECT
     if color == YELLOW:
         sound = SOUND1
         flashColor = BRIGHTYELLOW
@@ -143,7 +146,7 @@ def flashButtonAnimation(color, animationSpeed=50): # flashes button for pattern
         sound = SOUND4
         flashColor = BRIGHTGREEN
         rectangle = GREENRECT
-    
+
     originalSurf = DIS.copy()
     flashSurf = pygame.Surface((BUTTONSIZE, BUTTONSIZE))
     flashSurf = flashSurf.convert_alpha()
@@ -155,17 +158,23 @@ def flashButtonAnimation(color, animationSpeed=50): # flashes button for pattern
             DIS.blit(originalSurf, (0, 0))
             flashSurf.fill((r, g, b, alpha))
             DIS.blit(flashSurf, rectangle.topleft)
+            await asyncio.sleep(0)
+            print(alpha)
             pygame.display.update()
             FPSCLOCK.tick(FPS)
     DIS.blit(originalSurf, (0, 0))
+    return
 
-def drawButtons(): # draws tiles on screen
+async def drawButtons(): # draws tiles on screen
+    global DIS, YELLOWRECT, BLUERECT, REDRECT, GREENRECT
     pygame.draw.rect(DIS, YELLOW, YELLOWRECT)
     pygame.draw.rect(DIS, BLUE, BLUERECT)
     pygame.draw.rect(DIS, RED, REDRECT)
     pygame.draw.rect(DIS, GREEN, GREENRECT)
+    return
 
-def gameOverAnimation(color=WHITE, animationSpeed=50):
+async def gameOverAnimation(color=WHITE, animationSpeed=50):
+    global DIS, SOUND5
     # plays failure sound, then flashes background
     originalSurf = DIS.copy()
     flashSurf = pygame.Surface(DIS.get_size())
@@ -181,11 +190,14 @@ def gameOverAnimation(color=WHITE, animationSpeed=50):
                 flashSurf.fill((r, g, b, alpha))
                 DIS.blit(originalSurf, (0, 0))
                 DIS.blit(flashSurf, (0,0))
-                drawButtons()
+                await drawButtons()
                 pygame.display.update()
                 FPSCLOCK.tick(FPS)
+                await asyncio.sleep(0)
+    return
 
-def getButtonClicked(x, y): # allows users to click squares instead
+async def getButtonClicked(x, y): # allows users to click squares instead
+    global YELLOWRECT, BLUERECT, REDRECT, GREENRECT
     if YELLOWRECT.collidepoint((x, y)):
         return YELLOW
     elif BLUERECT.collidepoint((x,y)):
