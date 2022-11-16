@@ -1,8 +1,6 @@
 const express = require("express");
 const ejs = require("ejs");
 
-const ContainerManager = require("./containers.js")
-
 const app = new express();
 
 app.use(express.json());
@@ -16,20 +14,8 @@ app.get("/" , (req,res) => {
 });
 
 app.get("/games/:appId", (req, res) => {
-    
+        
 })
-
-app.get("/tower-defense" , function(req,res) {
-    res.render("../views/tower-defense.ejs");
-});
-
-app.get("/retro-racing" , function(req,res) {
-    res.render("../views/retro-racing.ejs");
-});
-
-app.get("/black-jack" , function(req,res) {
-    res.render("../views/black-jack.ejs");
-});
 
 const PORT = process.env.PORT || 3000;
 
