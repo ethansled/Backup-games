@@ -159,7 +159,6 @@ async def flashButtonAnimation(color, animationSpeed=50): # flashes button for p
             flashSurf.fill((r, g, b, alpha))
             DIS.blit(flashSurf, rectangle.topleft)
             await asyncio.sleep(0)
-            print(alpha)
             pygame.display.update()
             FPSCLOCK.tick(FPS)
     DIS.blit(originalSurf, (0, 0))

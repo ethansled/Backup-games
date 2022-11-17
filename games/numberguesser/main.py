@@ -5,24 +5,28 @@ import pygame
 # porting this to pygame is still WIP but this is a decent template for your apps
 # refer to https://github.com/pygame-web/pygbag/blob/main/README.md for explanation
 
-ATTEMPTS = []
-SCREEN = pygame.display.set_mode(1280, 720)
+SCORES = []
+SCREEN = pygame.display.set_mode(size=(1280, 720))
 
 
 def show_score():
-    if len(ATTEMPTS) <= 0:
+    if len(SCORES) <= 0:
         print("There is currently no high score, it's yours for the taking!")
     else:
-        print("The current high score is {} attempts".format(min(len(ATTEMPTS))))
+        print("The current high score is {} attempts".format(min(SCORES)))
 
 print("Hello traveler! Welcome to the game of guesses!")
 
 
 async def main():
-    global ATTEMPTS
+    global SCORES
     global SCREEN
+
+    attempts = 0
+
+    random_number = int(random.randint(1, 10))
+    
     while True:
-        random_number = int(random.randint(1, 10))
         try:
             guess = input("Pick a number between 1 and 10 ")
             if int(guess) < 1 or int(guess) > 10:
@@ -31,7 +35,7 @@ async def main():
             if int(guess) == random_number:
                 print("Nice! You got it!")
                 attempts += 1
-                ATTEMPTS.append(attempts)
+                SCORES.append(attempts)
                 print("It took you {} attempts".format(attempts))
                 play_again = input(
                     "Would you like to play again? (Enter Yes/No) ")
