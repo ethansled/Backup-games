@@ -23,7 +23,7 @@ clock = pygame.time.Clock()
 myfont = pygame.font.SysFont("monospace", 16)
 
 # Starts the game
-def main():
+async def main():
     # x1 and y1 are the coordinates of the snake
     x1 = dis_width / 2
     y1 = dis_height / 2
@@ -34,8 +34,8 @@ def main():
     # snake_len will keep track of the snake's length
     snake_len = 1
     # foodx and foody represent where food will spawn
-    foodx = 30
-    foody = 30
+    foodx = 100
+    foody = 300
     # initial score
     score = 0
     # beginning of main game loop
@@ -69,13 +69,13 @@ def main():
         if ([x1, y1] in snake_list[:-1]):
             # Resets scoreboard on impact
             score = 0
-            main()  
+            await main()
 
         # Restarts the game if snake hits the window border
         if (x1 >= dis_width or x1 < 0 or y1 >= dis_height or y1 < 0):
             # Resets score on impact
             score = 0
-            main()
+            await main()
 
         # Draws additional snake piece 
         for x in snake_list:
@@ -93,13 +93,12 @@ def main():
         text = myfont.render("Score {0}".format(score), 1, (0, 0, 0))
         dis.blit(text, (5, 10))
 
+        await asyncio.sleep(0)
         # updates content on screen
         pygame.display.update()
         # controls framerate/speed of game
         clock.tick(15)
 
-
-if __name__ == '__main__':
-    asyncio.run(main())
+asyncio.run(main())
 
 
