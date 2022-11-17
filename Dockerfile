@@ -9,6 +9,6 @@ RUN bash build.sh
 FROM nginx
 RUN rm /etc/nginx/conf.d/default.conf
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
-RUN rm /usr/share/nginx/html/*
-COPY --from=builder /usr/src/app/html/ /usr/share/nginx/html/
+RUN rm -rf /usr/share/nginx/html && mkdir /usr/share/nginx/html
+COPY --from=builder /usr/src/app/html /usr/share/nginx/html
 EXPOSE 8080
