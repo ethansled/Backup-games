@@ -2,7 +2,8 @@ FROM python:3 AS builder
 RUN apt update && apt install ffmpeg -y
 RUN pip install pygbag
 WORKDIR /usr/src/app
-COPY games .
+COPY games ./
+COPY build.sh .
 RUN bash build.sh
 
 FROM nginx
