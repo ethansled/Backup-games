@@ -2,6 +2,7 @@
     max-width: 1050px;
     width: 90%;
     margin: auto;
+    text-align: center;
   }
   
   .navbar {
@@ -111,22 +112,58 @@
   }
   
   .logo {
-    position: absolute;
+    position: relative;
     top: 5px;
     right: 15px;
     font-size: 1.2rem;
     color: #ffa31a;
+    height: inherit;
+    display: block;
   }
 
-  .logo1 {
-    position: absolute;
-    top: 5px;
-    right: 15px;
-    font-size: 1.2rem;
-    color: #ffa31a;
-    width: 20%;
+  .top-logo {
+    position: relative;
+    height: 100%;
+    display: inline-block;
+    border: 5px var(--mediumgrey) solid;
+    background-color: var(--darkgrey);
+    width: fit-content;
+    padding: 1.5px 5px 5px 5px;
+    box-sizing: border-box;
+  }
+
+  .top-logo a {
+    display: block;
+    height: 100%;
+    width: inherit;
+    padding: none;
+    box-sizing: border-box;
   }
   
+  .top-logo div {
+    height: inherit;
+    margin: 0;
+    padding: 0;
+  }
+
+  .top-logo img {
+    width: auto;
+    display: inline;
+    height: inherit;
+    border: none;
+    box-shadow: none;
+    vertical-align: middle;
+    box-sizing: border-box;
+  }
+
+  .top-logo span {
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+    width: fit-content;
+    vertical-align: middle;
+  }
+
   .nav-container input[type="checkbox"]:checked ~ .menu-items {
     transform: translateX(0);
   }

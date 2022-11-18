@@ -9,9 +9,12 @@
     <meta name="viewpoints" content="width=device-width, intial-scale=1.0">
     <title>Gamer God</title>
     <script src="https://kit.fontawesome.com/0f174da1e7.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
     <link rel="shortcut icon" href="../public/images/Gamer_God.png" type="png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="../public/css/stylesheet1.css">
     <link rel="stylesheet" href="../public/css/navsheet.css">
 </head>
@@ -27,68 +30,72 @@
                         <span class="line line2"></span>
                         <span class="line line3"></span>
                     </div>
-                    <div class="logo">
 
-                    </div>
+                    <a href="/">
+                        <div class="top-logo">
+                            <span>Gamer</span>
+                            <img src="../public/images/Gamer_god_cross.png" />
+                            <span>God</span>
+                        </div>
+                    </a>
+
                     <div class="menu-items ">
                         <h2>What Game Would You Like To Play?</h2>
-                        <li></li><a id="mnav " href="/tower-defense "><i class="fa-solid fa-tower-observation "></i>Tower
+                        <li></li><a id="mnav " href="/games/towerdefense "><i
+                                class="fa-solid fa-tower-observation "></i>Tower
                             Defense</a></li>
-                        <li></li><a id="mnav " href="/retro-racing "><i class="fa-solid fa-car "></i>Retro Racing</a></li>
-                        <li></li><a id="mnav " href="/black-jack "><i class="fa-solid fa-crown "></i>Black Jack</a></li>
+                        <li></li><a id="mnav " href="/games/retroracing "><i class="fa-solid fa-car "></i>Retro
+                            Racing</a></li>
+                        <li></li><a id="mnav " href="/games/blackjack "><i class="fa-solid fa-crown "></i>Black Jack</a>
+                        </li>
                     </div>
                 </div>
             </div>
         </nav>
-        <br>
-        <h1 id="titlecard ">Gamer God</h1>
+
         <br>
         <img id="logo " src="../public/images/Gamer_God.png " alt="logo image ">
-        <!-- <nav id="nav_bar ">
-                <p id="p_menu ">What Game Is For You?</p>
-                <menu class="menu ">
-                    <a id="mnav " href="/number-guess "><i class="fas fa-football-ball "></i>Number guess game</a>
-                    <a id="mnav " href="/. "><i class="fas fa-baseball-ball "></i>Snake</a>
-                    <a id="mnav " href="/. "><i class="fas fa-basketball-ball "></i>Aliens Go Pew</a>
-                </menu>
-            </nav>-->
     </header>
     <br>
     <main id="page_main_content ">
         <h2>The Best Name In gaming</h2>
         <br><br>
-        <p style="text-align: center " id="pMain ">Our Goal is to provide an optimal gaming experience for Python based games to be playable on any web browser.</p>
+        <p style="text-align: center " id="pMain ">Our Goal is to provide an optimal gaming experience for Python based
+            games to be playable on any web browser.</p>
         <br><br><br>
         <!----BootStrap-->
         <div class="row ">
             <br><br>
             <div class="col-12 col-md-6 col-xl-4 ">
-                <a href="game-view.ejs ">
+                <a href="games/snake">
                     <figure>
-                        <img class="gamelogo " class=" img-responsive center-block d-block mx-auto " src="./public/images/snakegame.png " alt="Snake Game ">
+                        <img class="gamelogo " class=" img-responsive center-block d-block mx-auto "
+                            src="./public/images/snakegame.png " alt="Snake Game ">
                         <figcaption> Snake Game</figcaption>
                     </figure>
                 </a>
             </div>
+
             <div class="col-12 col-md-6 col-xl-4 ">
-                <a href="game-view.ejs ">
+                <a href="games/simonsays">
                     <figure>
-                        <img class="gamelogo " class="img-responsive center-block d-block mx-auto " src="./public/images/retroracing.png " alt="Retro Racing ">
-                        <figcaption> Retro Racing</figcaption>
+                        <img class="gamelogo " class="img-responsive center-block d-block mx-auto "
+                            src="./public/images/simonsays.png " alt="Simon Says">
+                        <figcaption> Simon Says</figcaption>
                     </figure>
                 </a>
             </div>
+
             <div class="col-12 col-md-6 col-lg-4 col-xl-4 ">
-                <a href="game-view.ejs ">
+                <a href="games/towerdefense">
                     <figure>
-                        <img class="gamelogo " class="img-responsive center-block d-block mx-auto " src="./public/images/TowerDefense.jpg " alt=" Tower Defense ">
+                        <img class="gamelogo " class="img-responsive center-block d-block mx-auto "
+                            src="./public/images/TowerDefense.jpg " alt=" Tower Defense ">
                         <figcaption>Tower Defense</figcaption>
                     </figure>
                 </a>
 
             </div>
-        </div>
-        </div>
         </div>
         <!----End BootStrap----->
         <br><br><br>

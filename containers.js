@@ -9,33 +9,30 @@ const promisifyStream = stream => new Promise((resolve, reject) => {
   stream.on('error', reject)
 });
 
-try {
-    console.log(`Using container ${docker.container.get("webserver").id}\n`);
-} catch (error) {
-    console.log(`Container not found, building...`)
-    docker.image.build(tar.pack('.', { entries: ["games", "Dockerfile", "nginx.conf", "build.sh"] }), {
-        t: 'webserver',
-    })
-        .then(stream => promisifyStream(stream))
-        .then(() => docker.container.create({
-            Image: 'webserver',
-            name: 'webserver',
-            HostConfig: {
-                PortBindings: {
-                    "8080/tcp": [
-                        {
-                            HostIp: "0.0.0.0",
-                            HostPort: "8080"
-                        }
-                    ]
-                }
+console.log("building container");
+docker.image.build(tar.pack('.', { entries: ["games", "Dockerfile", "nginx.conf", "build.sh"] }), {
+    t: 'webserver',
+})
+    .then(stream => promisifyStream(stream))
+    .then(() => docker.container.create({
+        Image: 'webserver',
+        name: 'webserver',
+        HostConfig: {
+            PortBindings: {
+                "8080/tcp": [
+                    {
+                        HostIp: "0.0.0.0",
+                        HostPort: "8080"
+                    }
+                ]
             }
-        }))
-        .then((c) => c.start())
-        .then((c) => c.logs({ stdout: true, stderr: true }))
-        .then(stream => promisifyStream(stream));
+        }
+    }))
+    .then((c) => c.start())
+    .then((c) => c.logs({ stdout: true, stderr: true }))
+    .then(stream => promisifyStream(stream))
+    .catch((r) => console.log(`skipping container init`));
 
-}
 
 
 class ContainerManager {

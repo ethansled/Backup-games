@@ -1,19 +1,28 @@
+:root {
+    --darkgrey: #292929;
+    --mediumgrey: #808080;
+    --primary: #ffa31a;
+    /* --ng-font: "headerfont","Pakenham","Arial Narrow",Tahoma,Verdana,Geneva,Arial,Helvetica,sans-serif; */
+    --ng-font: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+    /* --ng-font: fantasy; */
+}
+
 head {
-    background-color: #1b1b1b;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: var(--darkgrey);
+    font-family: 'pankenham', 'Arial Narrow', Arial, sans-serif;
 }
 
 body {
-    background-color: #1b1b1b;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: var(--darkgrey);
+    font-family: var(--ng-font);
     color: #ffffff;
 }
 
 p {
-    background-color: #292929;
-    font-family: fantasy;
-    color: #ffa31a;
-    border: #808080;
+    background-color: var(--darkgrey);
+    font-family: var(--ng-font);
+    color: var(--primary);
+    border: var(--mediumgrey);
     border-style: groove;
     padding: 1%;
     box-shadow: 10px 10px 13px black;
@@ -22,10 +31,10 @@ p {
 }
 
 h1 {
-    background-color: #292929;
-    font-family: fantasy;
-    color: #ffa31a;
-    border: #808080;
+    background-color: var(--darkgrey);
+    font-family: var(--ng-font);
+    color: var(--primary);
+    border: var(--mediumgrey);
     border-style: groove;
     padding: 1%;
     box-shadow: 10px 10px 13px black;
@@ -35,10 +44,10 @@ h1 {
 }
 
 h2 {
-    background-color: #292929;
-    font-family: fantasy;
-    color: #ffa31a;
-    border: #808080;
+    background-color: var(--darkgrey);
+    font-family: var(--ng-font);
+    color: var(--primary);
+    border: var(--mediumgrey);
     border-style: groove;
     padding: 1%;
     box-shadow: 10px 10px 13px black;
@@ -48,10 +57,10 @@ h2 {
 }
 
 h3 {
-    background-color: #292929;
+    background-color: var(--darkgrey);
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color: #ffa31a;
-    border: #808080;
+    color: var(--primary);
+    border: var(--mediumgrey);
     border-style: groove;
     padding: 1%;
     box-shadow: 10px 10px 13px black;
@@ -59,10 +68,10 @@ h3 {
 }
 
 h4 {
-    background-color: #292929;
+    background-color: var(--darkgrey);
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color: #ffa31a;
-    border: #808080;
+    color: var(--primary);
+    border: var(--mediumgrey);
     border-style: groove;
     padding: 1%;
     box-shadow: 10px 10px 13px black;
@@ -70,11 +79,12 @@ h4 {
 }
 
 a {
-    color: #ffa31a;
+    color: var(--primary);
+    text-decoration: none;
 }
 
 img {
-    border: #808080;
+    border: var(--mediumgrey);
     border-style: groove;
     text-align: center;
     width: 30%;
@@ -89,12 +99,25 @@ figcaption {
     font-size: 150%;
 }
 
-a {
-    text-decoration: none;
-}
 
 .gamelogo {
     border-radius: 30%;
     box-shadow: 10px 10px 13px black;
     border: solid 2px gold;
+}
+
+div#PygameFrame {
+    box-sizing: content-box;
+    height: 500px;
+    width: 100%;
+    display: block;
+    text-align: center;
+    margin-top: 30px;
+}
+
+iframe {
+    width: 900px;
+    height: 500px;
+    box-sizing: content-box;
+    display: inline-block;
 }
