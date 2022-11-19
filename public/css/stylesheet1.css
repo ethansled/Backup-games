@@ -1,7 +1,10 @@
 :root {
-    --darkgrey: #292929;
-    --mediumgrey: #808080;
-    --primary: #ffa31a;
+    /* --darkgrey: #292929; */
+    /* --mediumgrey: #808080; */
+    /* --primary: #ffa31a; */
+    --darkgrey: #0A1629;
+    --mediumgrey: #214680;
+    --primary: #ffff61;
     /* --ng-font: "headerfont","Pakenham","Arial Narrow",Tahoma,Verdana,Geneva,Arial,Helvetica,sans-serif; */
     --ng-font: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
     /* --ng-font: fantasy; */

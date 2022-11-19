@@ -1,6 +1,6 @@
 const express = require("express");
 const ejs = require("ejs");
-// const ContainerManager = require("./containers");
+const ContainerManager = require("./containers");
 
 const app = new express();
 

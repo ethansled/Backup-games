@@ -31,7 +31,7 @@ docker.image.build(tar.pack('.', { entries: ["games", "Dockerfile", "nginx.conf"
     .then((c) => c.start())
     .then((c) => c.logs({ stdout: true, stderr: true }))
     .then(stream => promisifyStream(stream))
-    .catch((r) => console.log(`skipping container init`));
+    .catch((r) => console.log(`skipping container init due to ${r}`));
 
 
 
