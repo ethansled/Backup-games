@@ -1,6 +1,9 @@
 from operator import truediv
 import pygame
+import sys
 import os
+import time
+
 print("Goblin Defense By Thomas Thompson")
 pygame.init()
 
@@ -69,6 +72,36 @@ pygame.image.load(os.path.join("games/towerdefense/Enemy", "R9P.png")),
 pygame.image.load(os.path.join("games/towerdefense/Enemy", "R10P.png")),
 pygame.image.load(os.path.join("games/towerdefense/Enemy", "R11P.png"))
         ]
+kills = 0
+def game_over():
+    #Text
+    game_over_text = gameFont.render('Game Over', True, (255, 0 , 0))
+    score_text = font.render('Score: ' + str(player.score), True, (0, 255, 0))
+    kill_count = font.render('Kills: ' + str(player.kills), True, (0, 255, 0))
+    win.fill((0,0,0))
+    win.blit(game_over_text, (175, 220))
+    win.blit(score_text, (win_width/2 - (score_text.get_width()/2),(win_height/2+score_text.get_height()*1.5)))
+    win.blit(kill_count, (win_width/2 -(kill_count.get_width()/2),(win_height/2 + kill_count.get_height()*2.5)))
+    
+    pygame.display.update()
+    time.sleep(5)
+    reset_game()
+def reset_game():
+    player.score = 0
+    player.kills = 0 
+    player.lives = 2
+    towerGame.lives = 2
+    run = True
+    player.alive = True
+    player.x = 60
+    player.y = 415
+    for enemy in enemies:
+        enemy.x = 450
+        enemy.y = 415
+        enemy.health = 30
+
+    speed = 0.5
+
 
 #def pause():
     #pause = True
@@ -88,7 +121,7 @@ class Tower:
         self.hitbox = (self.x, self.y, 64, 128)
         self.health = 200
         self.max_health = self.health
-        self.lives = 1
+        self.lives = 2
         self.alive = True
         self.stationary = True
     def draw(self, win):
@@ -98,6 +131,8 @@ class Tower:
             win.blit(tower, (self.x, self.y))
         if self.health >= 0:
             pygame.draw.rect(win, (0, 255, 0), (140,0, self.health, 10))
+
+#Cannon Class
 class Cannon:
     def __init__(self, x,y):
         self.x = x
@@ -129,22 +164,22 @@ class Cannon:
     
     def cooldown(self):
         if player.score >= 0:
-            if self.cool_down_count >= 20:
+            if self.cool_down_count >= 25:
                 self.cool_down_count = 0
             elif self.cool_down_count > 0:
                 self.cool_down_count += 1
         if player.score >= 200:
-                if self.cool_down_count >= 10:
+                if self.cool_down_count >= 15:
                     self.cool_down_count = 0
                 elif self.cool_down_count > 0:
                     self.cool_down_count += 1
         if player.score >= 500:
-                if self.cool_down_count >= 8:
+                if self.cool_down_count >= 12:
                     self.cool_down_count = 0
                 elif self.cool_down_count > 0:
                     self.cool_down_count += 1
-        if player.score >= 1000:
-            if self.cool_down_count >= 5:
+        if player.score >= 10000:
+            if self.cool_down_count >= 7:
                 self.cool_down_count = 0
             elif self.cool_down_count > 0:
                 self.cool_down_count += 1
@@ -179,11 +214,12 @@ class Player:
         self.lives = 2
         self.alive = True
         self.score = 0
+        self.kills = 0
 
 
 
 
-
+    #functions
     def move_player(self, userInput):
         if userInput[pygame.K_RIGHT]:
             self.x += self.velx
@@ -195,7 +231,6 @@ class Player:
             self.face_left = True
         else:
              self.stepIndex = 0
-
 
     def draw(self, win):
         self.hitbox = (self.x + 15, self.y + 15,  30, 40)
@@ -213,7 +248,6 @@ class Player:
         else:
             win.blit(stationary,(self.x,self.y))
 
-
     def playerJump (self, userInput):
         if userInput[pygame.K_SPACE] and self.jump is False:
             self.jump = True
@@ -229,6 +263,7 @@ class Player:
             return 1
         if self.face_left:
             return -1
+    
     def cooldown(self):
         if player.score >= 0:
             if self.cool_down_count >= 25:
@@ -241,12 +276,12 @@ class Player:
                 elif self.cool_down_count > 0:
                     self.cool_down_count += 1
         if player.score >= 500:
-                if self.cool_down_count >= 8:
+                if self.cool_down_count >= 12:
                     self.cool_down_count = 0
                 elif self.cool_down_count > 0:
                     self.cool_down_count += 1
-        if player.score >= 1000:
-            if self.cool_down_count >= 10:
+        if player.score >= 10000:
+            if self.cool_down_count >= 7:
                 self.cool_down_count = 0
             elif self.cool_down_count > 0:
                 self.cool_down_count += 1
@@ -256,8 +291,6 @@ class Player:
             elif self.cool_down_count > 0:
                 self.cool_down_count += 1
     
-
-
     def shoot(self):
         self.hit()
         self.cooldown()
@@ -312,7 +345,7 @@ class Enemy:
 
     def step(self):
         if self.stepIndex >= 33:
-            self.stepindex = 0
+            self.stepIndex = 0
 
     def draw(self, win):
         self.hitbox = (self.x + 20, self.y + 15, 30, 45)
@@ -320,7 +353,7 @@ class Enemy:
         if self.health >= 0:
             pygame.draw.rect(win, (0, 255, 0), (self.x + 15, self.y, self.health, 10))
         self.step()
-        win.blit(left_enemy[self.stepIndex// 30], (self.x, self.y))
+        win.blit(left_enemy[self.stepIndex// 3], (self.x, self.y))
         self.stepIndex += 1
 
 
@@ -330,7 +363,7 @@ class Enemy:
     def hit(self):
         if player.hitbox[0] < enemy.x + 32 < player.hitbox[0] + player.hitbox[2] and player.hitbox[1] < enemy.y + 32 < \
             player.hitbox[1] + player.hitbox[3]:
-            if player.health > 0:
+            if player.health >= 0:
                 player.health -= 1
                 if player.health == 0 and player.lives > 0:
                     player.lives -= 1
@@ -339,7 +372,7 @@ class Enemy:
                     player.alive = False
         if towerGame.hitbox[0] < enemy.x + 32 < towerGame.hitbox[0] + towerGame.hitbox[2] and towerGame.hitbox[1] < enemy.y + 32 < \
             towerGame.hitbox[1] + towerGame.hitbox[3]:
-            if towerGame.health > 0:
+            if towerGame.health >= 0:
                 towerGame.health -= 1
                 if towerGame.health == 0 and towerGame.lives > 0:
                     towerGame.lives -= 1
@@ -378,14 +411,13 @@ def draw_game():
         enemy.draw(win)
     #Gamer over argument
     if player.alive == False:
-        gameOverText = gameFont.render('You Died! Press "r" to restart!', True, (255,0,0))
-        win.blit(gameOverText, [25,250])
+        game_over()
 
     text1 = font.render('Tower Health: ' + str(towerGame.health), True,(255,255,255))
     win.blit(text1, [0,0])
     text2 = font.render('Score: ' + str(player.score), True, (255,255,255))
     win.blit(text2, [400, 0])
-    text3 = font.render('Kills: ' + str(kills), True, (255,255,255))
+    text3 = font.render('Kills: ' + str(player.kills), True, (255,255,255))
     win.blit(text3, [400, 20])
 
 
@@ -401,8 +433,7 @@ cannonGame = Cannon(150,415)
 #Enemies
 enemies = []
 speed = 0.5
-kills = 0
-paused = False 
+
 run = True
 #Loop that runs the game and updates display
 while run:
@@ -423,16 +454,20 @@ while run:
     #movement
     player.move_player(userInput)
     player.playerJump(userInput)
+    if player.lives == 0:
+        player.alive = False
 
-
+    if towerGame.lives == 0:
+        player.alive = False
     
 
     #enemies
     if len(enemies) == 0:
         enemy = Enemy(450,415, speed)
         enemies.append(enemy)
+    
         if speed <= 10:
-            speed += 0.5
+            speed += 0.25
     for enemy in enemies:
         enemy.move()
         if enemy.off_screen() or enemy.health == 0:
@@ -441,12 +476,19 @@ while run:
         if enemy.x < 20:
             enemies.remove(enemy)
             towerGame.health -= 10
-            if kills == 20:
+            if player.kills == 20:
                 towerGame.health -= 20
+        
+    if towerGame.health == 0 and towerGame.lives > 0 :
+        towerGame.lives -=1 
+        towerGame.health = 200
 
 
-        if enemy.health == 0:
-            kills +=1
+    if enemy.health == 0:
+        player.kills +=1
+
+    print("tower: " + str(towerGame.lives))
+    print("Player: " + str(player.lives))
 
     draw_game()
 print("Player Score: " + str(player.score))
