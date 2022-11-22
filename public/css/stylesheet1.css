@@ -6,7 +6,7 @@
     --mediumgrey: #214680;
     --primary: #ffff61;
     /* --ng-font: "headerfont","Pakenham","Arial Narrow",Tahoma,Verdana,Geneva,Arial,Helvetica,sans-serif; */
-    --ng-font: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+    --ng-font: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
     /* --ng-font: fantasy; */
 }
 
@@ -101,7 +101,6 @@ figcaption {
     text-align: center;
     font-size: 150%;
 }
-
 
 .gamelogo {
     border-radius: 30%;
