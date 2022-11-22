@@ -38,11 +38,11 @@ FONT = pygame.font.SysFont("monospace", 16)
 
 # game sounds
 pygame.mixer.init()
-SOUND1 = pygame.mixer.Sound('games/simonsays/sound1.ogg')
-SOUND2 = pygame.mixer.Sound('games/simonsays/sound2.ogg')
-SOUND3 = pygame.mixer.Sound('games/simonsays/sound3.ogg')
-SOUND4 = pygame.mixer.Sound('games/simonsays/sound4.ogg')
-SOUND5 = pygame.mixer.Sound('games/simonsays/sound5.ogg')
+SOUND1 = pygame.mixer.Sound("./games/simonsays/sound1.ogg")
+SOUND2 = pygame.mixer.Sound("./games/simonsays/sound2.ogg")
+SOUND3 = pygame.mixer.Sound("./games/simonsays/sound3.ogg")
+SOUND4 = pygame.mixer.Sound("./games/simonsays/sound4.ogg")
+SOUND5 = pygame.mixer.Sound("./games/simonsays/sound5.ogg")
 
 pygame.init()
 DIS = pygame.display.set_mode((WINWIDTH, WINHEIGHT))
@@ -76,7 +76,13 @@ async def main():
 
         DIS.blit(infoWindow, infoRect)
 
-        for event in pygame.event.get(): # maps mouse clicks to key presses
+        for event in pygame.event.get(): 
+            # maps mouse clicks to key presses
+                   
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+                
             if event.type == MOUSEBUTTONUP:
                 mousex, mousey = event.pos
                 clickedButton = await getButtonClicked(mousex, mousey)
