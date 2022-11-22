@@ -22,7 +22,7 @@ gameFont = pygame.font.Font('freesansbold.ttf', 25)
 stationary = pygame.image.load(os.path.join("games/towerdefense/Hero","standing.png"))
 tower = pygame.image.load(os.path.join("games/towerdefense/Tower","Tower.png"))
 bulletImg = pygame.transform.scale(pygame.image.load(os.path.join("games/towerdefense/Bullet","bullet.png")),(10,10))
-cannon = pygame.image.load(os.path.join("games/towerdefense/Cannon","cannon.png")) 
+cannon = pygame.image.load(os.path.join("games/towerdefense/Cannon","cannon.png"))
 pygame_icon = pygame.image.load('games/towerdefense/Hero/standing.png')
 pygame.display.set_icon(pygame_icon)
 
@@ -82,13 +82,13 @@ def game_over():
     win.blit(game_over_text, (175, 220))
     win.blit(score_text, (win_width/2 - (score_text.get_width()/2),(win_height/2+score_text.get_height()*1.5)))
     win.blit(kill_count, (win_width/2 -(kill_count.get_width()/2),(win_height/2 + kill_count.get_height()*2.5)))
-    
+
     pygame.display.update()
     time.sleep(5)
     reset_game()
 def reset_game():
     player.score = 0
-    player.kills = 0 
+    player.kills = 0
     player.lives = 2
     towerGame.lives = 2
     run = True
@@ -126,7 +126,7 @@ class Tower:
         self.stationary = True
     def draw(self, win):
         self.hitbox = (self.x + 15, self.y + 15,  30, 40)
-       
+
         if self.stationary:
             win.blit(tower, (self.x, self.y))
         if self.health >= 0:
@@ -136,7 +136,7 @@ class Tower:
 class Cannon:
     def __init__(self, x,y):
         self.x = x
-        self.y = y 
+        self.y = y
         self.face_right = True
         self.alive = True
         self.bullets = []
@@ -157,11 +157,11 @@ class Cannon:
             bullet.move()
             if bullet.off_screen():
                 self.bullets.remove(bullet)
-    
+
     def direction(self):
         if self.face_right:
             return 1
-    
+
     def cooldown(self):
         if player.score >= 0:
             if self.cool_down_count >= 25:
@@ -183,7 +183,7 @@ class Cannon:
                 self.cool_down_count = 0
             elif self.cool_down_count > 0:
                 self.cool_down_count += 1
-    
+
     def hit(self):
         for enemy in enemies:
             for bullet in self.bullets:
@@ -263,7 +263,7 @@ class Player:
             return 1
         if self.face_left:
             return -1
-    
+
     def cooldown(self):
         if player.score >= 0:
             if self.cool_down_count >= 25:
@@ -290,7 +290,7 @@ class Player:
                 self.cool_down_count = 0
             elif self.cool_down_count > 0:
                 self.cool_down_count += 1
-    
+
     def shoot(self):
         self.hit()
         self.cooldown()
@@ -328,7 +328,7 @@ class Bullet:
             self.x += 15
         if self.direction == -1:
             self.x -= 15
-        
+
 
     def off_screen(self):
         return not (self.x >=0 and self.x <= win_width)
@@ -400,7 +400,7 @@ def draw_game():
     towerGame.draw(win)
     if player.score >= 1500:
         cannonGame.draw(win)
-        
+
     for bullet in cannonGame.bullets:
         bullet.draw_bullet()
     #Draw Bullets
@@ -443,7 +443,7 @@ while run:
     #input
     userInput = pygame.key.get_pressed()
 
-        
+
 
     if event.type == pygame.QUIT:
         run = False
@@ -459,13 +459,13 @@ while run:
 
     if towerGame.lives == 0:
         player.alive = False
-    
+
 
     #enemies
     if len(enemies) == 0:
         enemy = Enemy(450,415, speed)
         enemies.append(enemy)
-    
+
         if speed <= 10:
             speed += 0.25
     for enemy in enemies:
@@ -478,17 +478,15 @@ while run:
             towerGame.health -= 10
             if player.kills == 20:
                 towerGame.health -= 20
-        
+
     if towerGame.health == 0 and towerGame.lives > 0 :
-        towerGame.lives -=1 
+        towerGame.lives -=1
         towerGame.health = 200
 
 
     if enemy.health == 0:
         player.kills +=1
 
-    print("tower: " + str(towerGame.lives))
-    print("Player: " + str(player.lives))
 
     draw_game()
 print("Player Score: " + str(player.score))
