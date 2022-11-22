@@ -1,4 +1,4 @@
-import pygame, random, asyncio
+import pygame, random, asyncio, sys
 
 pygame.init()
 
@@ -41,6 +41,10 @@ async def main():
     # beginning of main game loop
     while True:
         for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+
             if event.type == pygame.KEYDOWN:
                 # Moves snake according to direction arrows on keyboard
                 if event.key == pygame.K_LEFT:
