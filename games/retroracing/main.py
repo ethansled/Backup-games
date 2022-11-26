@@ -9,15 +9,15 @@ def scale_image(img, factor):
     return pygame.transform.scale(img, size)
 
 
-GRASS = scale_image(pygame.image.load("games/retroracing/wood.png"), 2.5)
-TRACK = scale_image(pygame.image.load("games/retroracing/track2.png"), 0.9)
-TRACK_BORDER = scale_image(pygame.image.load("games/retroracing/track-border2.png"), 0.9)
+GRASS = scale_image(pygame.image.load("wood.png"), 2.5)
+TRACK = scale_image(pygame.image.load("track2.png"), 0.9)
+TRACK_BORDER = scale_image(pygame.image.load("track-border2.png"), 0.9)
 TRACK_BORDER_MASK = pygame.mask.from_surface(TRACK_BORDER)
-FINISH = pygame.image.load("games/retroracing/finish.png")
+FINISH = pygame.image.load("finish.png")
 FINISH_MASK = pygame.mask.from_surface(FINISH)
 FINISH_POSITION = (130, 250)
-WHITE_CAR = scale_image(pygame.image.load("games/retroracing/white-car2.png"), 0.55)
-PURPLE_CAR = scale_image(pygame.image.load("games/retroracing/purple-car2.png"), 0.55)
+WHITE_CAR = scale_image(pygame.image.load("white-car2.png"), 0.55)
+PURPLE_CAR = scale_image(pygame.image.load("purple-car2.png"), 0.55)
 WIDTH, HEIGHT = TRACK.get_width(), TRACK.get_height()
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Retro Racing")
@@ -247,46 +247,49 @@ def blit_text_center(win, font, text):
     win.blit(render, (win.get_width()/2 - render.get_width() /
                       2, win.get_height()/2 - render.get_height()/2))
 
-run = True
 clock = pygame.time.Clock()
 images = [(GRASS,(0, 0)), (TRACK,(0, 0)), (FINISH, FINISH_POSITION), (TRACK_BORDER,(0,0))]
 player_car = PlayerCar(3, 3)
 computer_car = computerCar(1, 1, PATH)
 game_info = GameInfo()
 
-while run:
-    clock.tick(FPS)
-    draw(WIN, images, player_car, computer_car, game_info)
+async def main():
+    while True:
+        clock.tick(FPS)
+        draw(WIN, images, player_car, computer_car, game_info)
 
 
-    while not game_info.started:
-        blit_text_center(WIN, MAIN_FONT, f"Press any key to start level {game_info.level}!")
-        pygame.display.update()
+        while not game_info.started:
+            blit_text_center(WIN, MAIN_FONT, f"Press any key to start level {game_info.level}!")
+            pygame.display.update()
+            await asyncio.sleep(0)
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    break
+
+                if event.type == pygame.KEYDOWN:
+                    game_info.start_level()
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                pygame.quit()
+                run = False
                 break
 
-            if event.type == pygame.KEYDOWN:
-                game_info.start_level()
 
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            run = False
-            break
-
-    
-    move_player(player_car)  
-    computer_car.move()
-    handle_collision(player_car, computer_car, game_info)   
-    
-    
-    if game_info.game_finished():
-        blit_text_center(WIN, MAIN_FONT, "WINNER!!!!" )
-        pygame.time.wait(5000)
-        game_info.reset()
-        computer_car.reset()
-        player_car.reset()
+        move_player(player_car)  
+        computer_car.move()
+        handle_collision(player_car, computer_car, game_info)   
 
 
-pygame.quit()
+        if game_info.game_finished():
+            blit_text_center(WIN, MAIN_FONT, "WINNER!!!!" )
+            pygame.time.wait(5000)
+            game_info.reset()
+            computer_car.reset()
+            player_car.reset()
+
+        await asyncio.sleep(0)
+
+
+asyncio.run(main())
