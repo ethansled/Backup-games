@@ -1,3 +1,4 @@
+import asyncio
 from operator import truediv
 import pygame
 import sys
@@ -11,7 +12,7 @@ win_width = 500
 win_height = 500
 
 win = pygame.display.set_mode((win_width,win_height))
-bg_image = pygame.image.load("games/towerdefense/bg.png")
+bg_image = pygame.image.load("bg.png")
 pygame.display.set_caption("Goblin Defense")
 bg = pygame.transform.scale(bg_image, (500,500))
 font = pygame.font.Font('freesansbold.ttf', 15)
@@ -19,58 +20,58 @@ gameFont = pygame.font.Font('freesansbold.ttf', 25)
 
 
 #Sprite Images
-stationary = pygame.image.load(os.path.join("games/towerdefense/Hero","standing.png"))
-tower = pygame.image.load(os.path.join("games/towerdefense/Tower","Tower.png"))
-bulletImg = pygame.transform.scale(pygame.image.load(os.path.join("games/towerdefense/Bullet","bullet.png")),(10,10))
-cannon = pygame.image.load(os.path.join("games/towerdefense/Cannon","cannon.png"))
-pygame_icon = pygame.image.load('games/towerdefense/Hero/standing.png')
+stationary = pygame.image.load(os.path.join("Hero","standing.png"))
+tower = pygame.image.load(os.path.join("Tower","Tower.png"))
+bulletImg = pygame.transform.scale(pygame.image.load(os.path.join("Bullet","bullet.png")),(10,10))
+cannon = pygame.image.load(os.path.join("Cannon","cannon.png"))
+pygame_icon = pygame.image.load('Hero/standing.png')
 pygame.display.set_icon(pygame_icon)
 
-left = [pygame.image.load(os.path.join("games/towerdefense/Hero","L1.png")),
-pygame.image.load(os.path.join("games/towerdefense/Hero","L2.png")),
-pygame.image.load(os.path.join("games/towerdefense/Hero","L3.png")),
-pygame.image.load(os.path.join("games/towerdefense/Hero","L4.png")),
-pygame.image.load(os.path.join("games/towerdefense/Hero","L5.png")),
-pygame.image.load(os.path.join("games/towerdefense/Hero","L6.png")),
-pygame.image.load(os.path.join("games/towerdefense/Hero","L7.png")),
-pygame.image.load(os.path.join("games/towerdefense/Hero","L8.png")),
-pygame.image.load(os.path.join("games/towerdefense/Hero","L9.png")),]
+left = [pygame.image.load(os.path.join("Hero","L1.png")),
+pygame.image.load(os.path.join("Hero","L2.png")),
+pygame.image.load(os.path.join("Hero","L3.png")),
+pygame.image.load(os.path.join("Hero","L4.png")),
+pygame.image.load(os.path.join("Hero","L5.png")),
+pygame.image.load(os.path.join("Hero","L6.png")),
+pygame.image.load(os.path.join("Hero","L7.png")),
+pygame.image.load(os.path.join("Hero","L8.png")),
+pygame.image.load(os.path.join("Hero","L9.png")),]
 
 #Right Facing
-right = [pygame.image.load(os.path.join("games/towerdefense/Hero","R1.png")),
-pygame.image.load(os.path.join("games/towerdefense/Hero","R2.png")),
-pygame.image.load(os.path.join("games/towerdefense/Hero","R3.png")),
-pygame.image.load(os.path.join("games/towerdefense/Hero","R4.png")),
-pygame.image.load(os.path.join("games/towerdefense/Hero","R5.png")),
-pygame.image.load(os.path.join("games/towerdefense/Hero","R6.png")),
-pygame.image.load(os.path.join("games/towerdefense/Hero","R7.png")),
-pygame.image.load(os.path.join("games/towerdefense/Hero","R8.png")),
-pygame.image.load(os.path.join("games/towerdefense/Hero","R9.png")),]
+right = [pygame.image.load(os.path.join("Hero","R1.png")),
+pygame.image.load(os.path.join("Hero","R2.png")),
+pygame.image.load(os.path.join("Hero","R3.png")),
+pygame.image.load(os.path.join("Hero","R4.png")),
+pygame.image.load(os.path.join("Hero","R5.png")),
+pygame.image.load(os.path.join("Hero","R6.png")),
+pygame.image.load(os.path.join("Hero","R7.png")),
+pygame.image.load(os.path.join("Hero","R8.png")),
+pygame.image.load(os.path.join("Hero","R9.png")),]
 
 #enemy animations
-left_enemy = [pygame.image.load(os.path.join("games/towerdefense/Enemy", "L1E.png")),
-pygame.image.load(os.path.join("games/towerdefense/Enemy", "L2E.png")),
-pygame.image.load(os.path.join("games/towerdefense/Enemy", "L3E.png")),
-pygame.image.load(os.path.join("games/towerdefense/Enemy", "L4E.png")),
-pygame.image.load(os.path.join("games/towerdefense/Enemy", "L5E.png")),
-pygame.image.load(os.path.join("games/towerdefense/Enemy", "L6E.png")),
-pygame.image.load(os.path.join("games/towerdefense/Enemy", "L7E.png")),
-pygame.image.load(os.path.join("games/towerdefense/Enemy", "L8E.png")),
-pygame.image.load(os.path.join("games/towerdefense/Enemy", "L9P.png")),
-pygame.image.load(os.path.join("games/towerdefense/Enemy", "L10P.png")),
-pygame.image.load(os.path.join("games/towerdefense/Enemy", "L11P.png"))
+left_enemy = [pygame.image.load(os.path.join("Enemy", "L1E.png")),
+pygame.image.load(os.path.join("Enemy", "L2E.png")),
+pygame.image.load(os.path.join("Enemy", "L3E.png")),
+pygame.image.load(os.path.join("Enemy", "L4E.png")),
+pygame.image.load(os.path.join("Enemy", "L5E.png")),
+pygame.image.load(os.path.join("Enemy", "L6E.png")),
+pygame.image.load(os.path.join("Enemy", "L7E.png")),
+pygame.image.load(os.path.join("Enemy", "L8E.png")),
+pygame.image.load(os.path.join("Enemy", "L9P.png")),
+pygame.image.load(os.path.join("Enemy", "L10P.png")),
+pygame.image.load(os.path.join("Enemy", "L11P.png"))
         ]
-right_enemy = [pygame.image.load(os.path.join("games/towerdefense/Enemy", "R1E.png")),
-pygame.image.load(os.path.join("games/towerdefense/Enemy", "R2E.png")),
-pygame.image.load(os.path.join("games/towerdefense/Enemy", "R3E.png")),
-pygame.image.load(os.path.join("games/towerdefense/Enemy", "R4E.png")),
-pygame.image.load(os.path.join("games/towerdefense/Enemy", "R5E.png")),
-pygame.image.load(os.path.join("games/towerdefense/Enemy", "R6E.png")),
-pygame.image.load(os.path.join("games/towerdefense/Enemy", "R7E.png")),
-pygame.image.load(os.path.join("games/towerdefense/Enemy", "R8E.png")),
-pygame.image.load(os.path.join("games/towerdefense/Enemy", "R9P.png")),
-pygame.image.load(os.path.join("games/towerdefense/Enemy", "R10P.png")),
-pygame.image.load(os.path.join("games/towerdefense/Enemy", "R11P.png"))
+right_enemy = [pygame.image.load(os.path.join("Enemy", "R1E.png")),
+pygame.image.load(os.path.join("Enemy", "R2E.png")),
+pygame.image.load(os.path.join("Enemy", "R3E.png")),
+pygame.image.load(os.path.join("Enemy", "R4E.png")),
+pygame.image.load(os.path.join("Enemy", "R5E.png")),
+pygame.image.load(os.path.join("Enemy", "R6E.png")),
+pygame.image.load(os.path.join("Enemy", "R7E.png")),
+pygame.image.load(os.path.join("Enemy", "R8E.png")),
+pygame.image.load(os.path.join("Enemy", "R9P.png")),
+pygame.image.load(os.path.join("Enemy", "R10P.png")),
+pygame.image.load(os.path.join("Enemy", "R11P.png"))
         ]
 kills = 0
 def game_over():
@@ -361,7 +362,7 @@ class Enemy:
         self.hit()
         self.x -= speed
     def hit(self):
-        if player.hitbox[0] < enemy.x + 32 < player.hitbox[0] + player.hitbox[2] and player.hitbox[1] < enemy.y + 32 < \
+        if player.hitbox[0] < self.x + 32 < player.hitbox[0] + player.hitbox[2] and player.hitbox[1] < enemy.y + 32 < \
             player.hitbox[1] + player.hitbox[3]:
             if player.health >= 0:
                 player.health -= 1
@@ -370,7 +371,7 @@ class Enemy:
                     player.health = 30
                 elif player.health == 0 and player.lives == 0:
                     player.alive = False
-        if towerGame.hitbox[0] < enemy.x + 32 < towerGame.hitbox[0] + towerGame.hitbox[2] and towerGame.hitbox[1] < enemy.y + 32 < \
+        if towerGame.hitbox[0] < self.x + 32 < towerGame.hitbox[0] + towerGame.hitbox[2] and towerGame.hitbox[1] < enemy.y + 32 < \
             towerGame.hitbox[1] + towerGame.hitbox[3]:
             if towerGame.health >= 0:
                 towerGame.health -= 1
@@ -381,7 +382,7 @@ class Enemy:
                     towerGame.alive = False
 
     def die (self):
-        if enemy.health == 0:
+        if self.health == 0:
             player.score += 50
 
 
@@ -434,62 +435,61 @@ cannonGame = Cannon(150,415)
 enemies = []
 speed = 0.5
 
-run = True
-#Loop that runs the game and updates display
-while run:
+userInput = None
 
-    #Quit game
-    for event in pygame.event.get():...
-    #input
-    userInput = pygame.key.get_pressed()
+async def main():
+    global userInput, speed
+    while True:
 
+        #Quit game
+        for event in pygame.event.get():...
+        #input
+        userInput = pygame.key.get_pressed()
 
+        if event.type == pygame.QUIT:
+            run = False
 
-    if event.type == pygame.QUIT:
-        run = False
+        player.shoot()
+        if player.score >= 1500:
+            cannonGame.shoot()
+        #movement
+        player.move_player(userInput)
+        player.playerJump(userInput)
+        if player.lives == 0:
+            player.alive = False
 
-    player.shoot()
-    if player.score >= 1500:
-        cannonGame.shoot()
-    #movement
-    player.move_player(userInput)
-    player.playerJump(userInput)
-    if player.lives == 0:
-        player.alive = False
-
-    if towerGame.lives == 0:
-        player.alive = False
-
-
-    #enemies
-    if len(enemies) == 0:
-        enemy = Enemy(450,415, speed)
-        enemies.append(enemy)
-
-        if speed <= 10:
-            speed += 0.25
-    for enemy in enemies:
-        enemy.move()
-        if enemy.off_screen() or enemy.health == 0:
-            enemies.remove(enemy)
-            enemy.die()
-        if enemy.x < 20:
-            enemies.remove(enemy)
-            towerGame.health -= 10
-            if player.kills == 20:
-                towerGame.health -= 20
-
-    if towerGame.health == 0 and towerGame.lives > 0 :
-        towerGame.lives -=1
-        towerGame.health = 200
+        if towerGame.lives == 0:
+            player.alive = False
 
 
-    if enemy.health == 0:
-        player.kills +=1
+        #enemies
+        if len(enemies) == 0:
+            enemy = Enemy(450,415, speed)
+            enemies.append(enemy)
+
+            if speed <= 10:
+                speed += 0.25
+        for enemy in enemies:
+            enemy.move()
+            if enemy.off_screen() or enemy.health == 0:
+                enemies.remove(enemy)
+                enemy.die()
+            if enemy.x < 20:
+                enemies.remove(enemy)
+                towerGame.health -= 10
+                if player.kills == 20:
+                    towerGame.health -= 20
+
+        if towerGame.health == 0 and towerGame.lives > 0 :
+            towerGame.lives -=1
+            towerGame.health = 200
 
 
-    draw_game()
-print("Player Score: " + str(player.score))
+        if enemy.health == 0:
+            player.kills +=1
 
 
+        draw_game()
+        await asyncio.sleep(0)
 
+asyncio.run(main())
